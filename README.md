@@ -16,6 +16,9 @@ Meet is the app that you will find a number of events in around you!
 - Using React axios and async/await for the API call.
 - Using the Serverless Toolkit
 
+## Serverless app
+Serverless or Function as a Service (FaaS) comes with autoscale by default, and it’s generally easier to deploy you apps. Using serverless, you don’t have to manage your own server.
+
 ## Serverless installation
 - Install Serverless via using npm command in the terminal " npm install -g serverless ".
 - Create a Serverless Service within the root directory of the app and type : 
