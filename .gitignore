@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# ignore all directories
+backup/
+
+
 # production
 /build
 
