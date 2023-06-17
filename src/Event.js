@@ -15,19 +15,20 @@ class Event extends Component {
         return (
             <div>
                 <h1 className="summary">{event.summary}</h1>
+                <p className="eventDate">{new Date(event.start.dateTime).toString()}</p>
                 <p className="eventLocation">{event.location}</p>
 
                 {this.state.collapsed === false && (
                     <>
                         <p className="description">{event.description}</p>
-                        <p className="eventDate">{new Date(event.start.dateTime).toString()}</p>
                         <p className="creator">{event.creator.email}</p>
                     </>
                 )}
-
-                <button className="detailButton" onClick={() => this.toggleDetails()}>
-                    {collapsed ? "Show" : "Hide"} details
-                </button>
+                <div className="btn_section">
+                    <button className="detailButton" onClick={() => this.toggleDetails()}>
+                        {collapsed ? "Show" : "Hide"} details
+                    </button>
+                </div>
             </div>
         )
     }
