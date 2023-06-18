@@ -95,6 +95,10 @@ span {
   margin-bottom: 30px;
 }
 
+.hidden_detail .description {
+  padding: 15px 0;
+}
+
 .btn_section {
   display: flex;
 }
