@@ -21,13 +21,12 @@ export const getAccessToken = async () => {
         }
         return code && getToken(code);
     }
-
     return accessToken;
 
 };
 
 
-export const checkToken = async (accessToken) => {
+const checkToken = async (accessToken) => {
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
@@ -36,6 +35,7 @@ export const checkToken = async (accessToken) => {
 
     return result;
 };
+
 
 export const getEvents = async () => {
     NProgress.start();
@@ -50,7 +50,7 @@ export const getEvents = async () => {
 
     if (token) {
         removeQuery();
-        const url = 'YOUR_GET_EVENTS_API_ENDPOINT' + '/' + token;
+        const url = 'https://8rx8lr81ek.execute-api.ap-southeast-2.amazonaws.com/dev/api/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
@@ -82,7 +82,7 @@ const getToken = async (code) => {
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch('https://8rx8lr81ek.execute-api.ap-southeast-2.amazonaws.com/dev/api/token' + '/' + encodeCode);
+        const response = await fetch('https://8rx8lr81ek.execute-api.ap-southeast-2.amazonaws.com/dev/api/token/' + encodeCode);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
