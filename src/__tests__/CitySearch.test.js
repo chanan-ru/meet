@@ -69,18 +69,6 @@ describe('<CitySearch /> component', () => {
     });
 
 
-});
-
-describe('<CitySearch /> component', () => {
-
-    let locations, CitySearchWrapper;
-
-    beforeAll(() => {
-        // This variable will contain the set of distinct locations from the mockData events list
-        locations = extractLocations(mockData);
-        CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => { }} />);
-    });
-
     test("selecting CitySearch input reveals the suggestions list", () => {
         CitySearchWrapper.find('.city').simulate('focus');
         expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
