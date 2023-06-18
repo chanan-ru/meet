@@ -19,10 +19,10 @@ class Event extends Component {
                 <p className="eventLocation">{event.location}</p>
 
                 {this.state.collapsed === false && (
-                    <>
+                    <div className="hidden_detail">
                         <p className="description">{event.description}</p>
                         <p className="creator">{event.creator.email}</p>
-                    </>
+                    </div>
                 )}
                 <div className="btn_section">
                     <button className="detailButton" onClick={() => this.toggleDetails()}>
