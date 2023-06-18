@@ -21,32 +21,11 @@ describe('<NumberOfEvents /> component', () => {
 
 
     test('change state when number of events change', () => {
-        // NumberOfEventsWrapper.setState({
-        //     query: 32
-        // });
-        const eventObject = { target: { value: 32 } };
+        const eventObject = { target: { value: 10 } };
         NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', eventObject);
-        expect(NumberOfEventsWrapper.state('query')).toBe(32);
+        expect(NumberOfEventsWrapper.state('query')).toBe(10);
     });
 
-
-
-
-    // test('renders text input correctly', () => {
-    //     const query = NumberOfEventsWrapper.state('query');
-    //     expect(NumberOfEventsWrapper.find('.numberOfEvents')).prop('value').toBe(query);
-    // });
-
-
-
-
-
-    // test('change state when the number of events change', () => {
-    //     NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', {
-    //         target: { value: 12 },
-    //     });
-    //     expect(NumberOfEventsWrapper.state('query')).toBe(12);
-    // });
 
 
 });
