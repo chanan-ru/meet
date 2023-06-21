@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ErrorAlert } from "./Alert";
 
 class NumberOfEvents extends Component {
     state = {
@@ -15,22 +16,31 @@ class NumberOfEvents extends Component {
         });
 
         if (value < 1 || value > 32) {
-            alert("Please enter Events number between 1 - 32");
+            this.setState({
+                errText: 'Please enter Events number between 1 - 32',
+            });
+        } else {
+            this.setState({
+                errText: '',
+            });
         }
     }
 
     render() {
         return (
-            <div>
-                <span>Number of Events: </span>
-                <input
-                    className="numberOfEvents"
-                    type="number"
-                    min={1}
-                    max={32}
-                    value={this.state.query}
-                    onChange={this.handleInputChanged}
-                />
+            <div className="event-input">
+                <div className="inLineBlock">
+                    <span>Number of Events: </span>
+                    <input
+                        className="numberOfEvents"
+                        type="number"
+                        min={1}
+                        max={32}
+                        value={this.state.query}
+                        onChange={this.handleInputChanged}
+                    />
+                    <ErrorAlert text={this.state.errText} />
+                </div>
             </div>
         )
     }
