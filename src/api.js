@@ -1,5 +1,4 @@
 import { mockData } from './mock-data';
-// import axios from 'axios';
 import axios from 'axios';
 import NProgress from 'nprogress';
 
@@ -45,20 +44,37 @@ export const getEvents = async () => {
         return mockData;
     }
 
+    //Access local storage when user is offline
+    if (!navigator.onLine) {
+        const events = localStorage.getItem("lastEvents");
+        NProgress.done();
+        return events ? JSON.parse(events) : [];
+    }
+
 
     const token = await getAccessToken();
 
     if (token) {
         removeQuery();
+
+
         const url = 'https://8rx8lr81ek.execute-api.ap-southeast-2.amazonaws.com/dev/api/get-events/' + token;
-        const result = await axios.get(url);
-        if (result.data) {
-            var locations = extractLocations(result.data.events);
-            localStorage.setItem("lastEvents", JSON.stringify(result.data));
-            localStorage.setItem("locations", JSON.stringify(locations));
-        }
-        NProgress.done();
-        return result.data.events;
+        // const result = await axios.get(url);
+        // if (result.data) {
+        //     var locations = extractLocations(result.data.events);
+        //     localStorage.setItem("lastEvents", JSON.stringify(result.data));
+        //     localStorage.setItem("locations", JSON.stringify(locations));
+        // }
+
+        const response = await fetch(url);
+        const result = await response.json();
+        if (result) {
+            NProgress.done();
+            localStorage.setItem("lastEvents", JSON.stringify(result.events));
+            return result.events;
+        } else return null;
+        // NProgress.done();
+        // return result.data.events;
     }
 };
 
